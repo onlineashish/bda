@@ -1,27 +1,20 @@
-#a
-df <- airquality 
-dim(df) 
+print(airquality)
+print(dim(airquality))
 
-#b
-sapply(df,class) 
+sapply(airquality,class)
 
-#c
-#Printing the missing values 
-print("The Missing values are as follows") 
-xcolNames <- colnames(df) 
-x<- colSums(is.na(df)) 
-print(x) 
+#testing the missing values
+sum(is.na(airquality))
+mean(is.na(airquality))
 
-#d
-which(is.na(df)) 
-sum(is.na(df)) 
-df1<- as.data.frame(df) 
+aq = airquality
+aq_recoded = data.frame(sapply(aq,function(x) ifelse(is.na(x), mean(x,na.rm = TRUE),x)))
+print(dim(aq_recoded))
+sum(is.na(aq_recoded))
+mean(is.na(aq_recoded))
 
-#b
-#Recoding the missing values 
-for(i in 1:4)  
-  df1[,i]<- ifelse ( is.na(df[,i]), mean(df[,i], na.rm = TRUE), df[,i]) # Excluding the missing values 
-df2<-na.omit(df)
-
-print(df2)
-sum(is.na(df2))
+#exlude missing values
+new_aq = na.omit(airquality)
+print(dim(new_aq))
+sum(is.na(new_aq))
+mean(is.na(new_aq))
